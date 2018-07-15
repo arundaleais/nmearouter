@@ -1,0 +1,16 @@
+Line 92: Class MSComctlLib.StatusBar of control StatusBar was not a loaded control class.
+Line 119: Class MSComctlLib.Toolbar of control tlbRouter was not a loaded control class.
+Line 187: Class MSWinsockLib.Winsock of control Winsock was not a loaded control class.
+Line 99: The property name _ExtentX in StatusBar is invalid.
+Line 100: The property name _ExtentY in StatusBar is invalid.
+Line 101: The property name _Version in StatusBar is invalid.
+Line 108: The property name Panels in StatusBar is invalid.
+Line 126: The property name _ExtentX in tlbRouter is invalid.
+Line 127: The property name _ExtentY in tlbRouter is invalid.
+Line 128: The property name ButtonWidth in tlbRouter is invalid.
+Line 129: The property name ButtonHeight in tlbRouter is invalid.
+Line 131: The property name _Version in tlbRouter is invalid.
+Line 191: The property name _ExtentX in Winsock is invalid.
+Line 192: The property name _ExtentY in Winsock is invalid.
+Line 193: The property name _Version in Winsock is invalid.
+Line 194: The property name Protocol in Winsock is invalid.

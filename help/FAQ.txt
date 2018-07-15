@@ -1,0 +1,131 @@
+Please locate NmeaRouterLog.log
+and RouterProfile Name.txt	(where Profile Name is the name of the profile you are currently using)
+and email them to me
+
+The files should be in the %USERPROFILE%\Local Settings\Temp directory
+Which dependent on your setup will be somewhere like c:\Documents and Settings\Username\Local Settings\Temp
+The folder may be hidden and search may not find the file !
+
+This file folder can also be located  from
+Control Panel > System > Advanced > Environment Variables > TEMP
+
+A Screen image of the error when the Program crashed would also be helpful (Alt + Print Screen).
+----------------------------------------------------------------------------------
+Fails to enumerate serial ports correctly
+reg query HKLM\hardware\devicemap\serialcomm /s
+reg export HKLM\hardware\devicemap\serialcomm duf.lis
+
+
+1.	Open a DOS prompt (run cmd)
+(2.OLD way)    At the prompt enter reg export HKLM\hardware\devicemap\serialcomm duf.lis)
+2.	at dos>regedit /E duf.lis "HKEY_LOCAL_MACHINE\hardware\devicemap\serialcomm"
+        (use Copy > Paste as the spaces matter !
+        regedit<space>/E<space>duf.lis<space>"HKEY_LOCAL_MACHINE\hardware\devicemap\serialcomm"
+3.	The file duf.lis will be created in the directory on the prompt.
+4.	Please send me the file created
+
+------------------------------------------------------------------------------------
+TcpRcv	Error 10040 Datagram too big.
+see http://smallvoid.com/article/winnt-winsock-buffer.html
+http://www.pctools.com/guides/registry/detail/268/
+http://support.microsoft.com/kb/305097
+http://www.speedguide.net/articles/windows-7-vista-2008-tweaks-2574
+http://www.speedguide.net/articles/windows-2kxp-registry-tweaks-157
+
+
+
+ [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters]
+Parameter = TcpWindowSize
+Data Type = REG_DWORD
+Value DWORD= 8760 (Decimal)	'Currently mine XP at work 32767 & 64240 also suggested
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Afd\Parameters]
+Data Type = REG_DWORD
+DefaultReceiveWindow = 16384	'Currenly mine XP at work
+DefaultSendWindow = 16384
+
+reg query HKLM\SYSTEM\CurrentControlSet\Services\AFD\Parameters /s
+reg query HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces /s
+
+-------------------------- Deduping ----------------------------
+A statistical analysis of the duplicated messages is continuously assessed which dynamically modifies
+the dedupe controlling parameters.
+  
+Parameters
+Data receive rates can vary from below 100/min to above 20,000/min
+Separation between duplicated messages can vary from one to hundreds
+Frequency of duplicated messages can be every other message (2 identical sources)
+Latency on one of two otherwise identical sources causes a duplication offset.
+Buffer size is critical to CPU performance (Square law).
+The last part of multi-part sentences can be mistaken as a duplicate, (1:255) probability on Msg 5.
+ 
+Assumptions
+Duplicates arrive with a Poisson distribution
+Enough previously arriving sentences are checked to give a 95% certainty that duplicates are detected.
+To be a duplicate, both sentences must be identical (string match).
+Separate parts of multipart sentences must have the same separation as previously received parts,
+otherwise the last part of multipart sentences may be incorrectly identified as duplicates.
+Note: It is rare for differing parts of multipart sentences to not be received sequentially.
+
+Limits
+Minimum buffer size is set to 20 message separation between duplicates.
+Maximum buffer size is set to a 95% probability of detecting a duplicate.
+
+Performance Considerations
+The CPU time required to detect duplicates quadruples with each doubling of buffer size (square law).
+Widely separated duplicate messages at hign receive rates, can have a significant impact on performance.
+The above limits are designed to prevent the dedupe procedure stalling the PC.
+Increasing probablility from 95% to 97% quadruples CPU time.
+----------------- Split Packets  & UDP Delimiter-------------------------------------------------------------------------------
+Because AIS sentences are delimited by a <CR><LF> pair and any one AIS sentence cannot be longer than 82 characters, a single AIS sentence will always be smaller than the maximum length of a UDP packet transmitted via the internet.
+
+This assumes the device originating the AIS sentences (normally an AIS receiver or Serial to UDP converter), is configured to send the data string each time it detects a <CR><LF> pair.
+
+If however the device originating the data is configured to send the data after a fixed time interval, if after a set number of characters, the AIS sentence will be split into 2 parts.
+
+Because part 1 and part 2 of the sentence may be routed via a different route as it passes through the various routers on the internet, whilst going from the Source device to the Destination device, and this path dynamically changes, there is no guarantee that part 1 of the sentence will be received by the Destination device before part 2.
+
+The Destination device has no way of telling which part of the sentence is the first half of the second half of the sentence, because at this level the actual content of the data is irrelevant.
+
+Therefore AIS sentences should always be sent by the Source Device after a <CR><LF> delimiter.
+
+This is not an issue with TCP because the TCP protocol allocates a sequence number to each packet, as part of the TCP protocol. Additionally TCP confirms back to the sender when each packet has actually been received. TCP guarantees delivery of the packet (within a time frame), but this can put a considerable load both on the bandwidth used and on the processing required by both the Source and Destination devices.
+
+For these reasons most networked AIS data uses UDP.
+
+Maximum Connections & Routes
+By default the maximums are set to
+Maximum Connections = 10 including TCP client streams
+Maximum Routes = 10 Total on all streams
+
+If you register with me (free at present !) by 
+Help > Contact Me
+I will respond with an Activation Code (For the PC sending the Email)
+This will increase the limits  to
+Maximium Connections = 31
+Maximum Routes = 20
+
+Activation Code
+In NmeaRouter > Properties set SetActCode = -1
+7CED4-3BE
+
+Thanks for your interest in NmeaRouter and registering.
+
+At the moment the only enhancement by registering is to enable more than 10 simultaneous routes or connections.
+
+If you wish to enable this you should enter the Activation Code 73286-3BE
+
+regards
+
+Neal
+
+Is it possible to switch of the pop up over the NMEA Delimiter error?
+
+Attached is a Zip file containing a .reg file (Virus scanners will reject the .reg file)
+
+If you click the .reg file Windows will activate the registry editor which make a registry entry that will suppress the Nmea Terminator error message in V63 onwards.
+
+Sorry for the delay in replying, I've been away and will also be away from 1-July-16 to 18-Jul-16
+
+You need in NmeaRouter to click Help > Contact Me > (Registration) Contact Me
+this will send me an email with a serial number and I will reply with an activation code
+

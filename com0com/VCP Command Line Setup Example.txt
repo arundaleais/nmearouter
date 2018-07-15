@@ -1,0 +1,34 @@
+Enter 'help' to get info about usage of Setup for com0com.
+
+command> change COM14 HiddenMode=YES
+       CNCA0 PortName=COM#,RealPortName=COM14
+       CNCB0 PortName=COM#,RealPortName=COM15
+command> list
+       CNCA0 PortName=COM#,RealPortName=COM14
+       CNCB0 PortName=COM#,RealPortName=COM15
+command> change COM14 HiddenMode=NO
+       CNCA0 PortName=COM#,RealPortName=COM14
+       CNCB0 PortName=COM#,RealPortName=COM15
+command> list
+       CNCA0 PortName=COM#,RealPortName=COM14
+       CNCB0 PortName=COM#,RealPortName=COM15
+command> remove 0
+Disabled  root\com0com \Device\00000096
+Removed  root\com0com \Device\00000096
+Removed CNCA0 com0com\port
+Removed CNCB0 com0com\port
+command> install PortName=COM# PortName=COM#
+       CNCA0 PortName=COM#
+       CNCB0 PortName=COM#
+command> remove 0
+Disabled  root\com0com \Device\00000097
+Removed  root\com0com \Device\00000097
+Removed CNCA0 com0com\port
+Removed CNCB0 com0com\port
+command> install PortName=- PortName=COM#
+       CNCA0 PortName=-
+       CNCB0 PortName=COM#
+command> list
+       CNCA0 PortName=-
+       CNCB0 PortName=COM#
+command>
