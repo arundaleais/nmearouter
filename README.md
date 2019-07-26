@@ -4,7 +4,7 @@ Written by Neal Arundale (deceased), this has been uploaded to GitHub so that ot
 
 # Registration
 
-Many thanks to Philippe for decoding th e [registration process](https://github.com/arundaleais/nmearouter/blob/master/frmRegister.frm#L334):
+Many thanks to Philippe for decoding the [registration process](https://github.com/arundaleais/nmearouter/blob/master/frmRegister.frm#L334):
 
 * Take your serial number (e.g. 8810)
 * Perform the following calculation:
